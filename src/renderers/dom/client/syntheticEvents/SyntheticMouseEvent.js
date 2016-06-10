@@ -25,6 +25,8 @@ var MouseEventInterface = {
   screenY: null,
   clientX: null,
   clientY: null,
+  offsetX: null,
+  offsetY: null,
   ctrlKey: null,
   shiftKey: null,
   altKey: null,
@@ -63,6 +65,16 @@ var MouseEventInterface = {
       event.pageY :
       event.clientY + ViewportMetrics.currentScrollTop;
   },
+  offsetX: function(event) {
+    return 'offsetX' in event ?
+      event.offsetX :
+      event.clientX - event.target.getBoundingClientRect().left
+  },
+  offsetY: function(event) {
+    return 'offsetY' in event ?
+      event.offsetY :
+      event.clientY - event.target.getBoundingClientRect().top
+  }
 };
 
 /**
